@@ -14,6 +14,8 @@
 		A8BE5DDC2A38AB740045DF5C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A8BE5DDB2A38AB740045DF5C /* Assets.xcassets */; };
 		A8BE5DDF2A38AB740045DF5C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8BE5DDD2A38AB740045DF5C /* LaunchScreen.storyboard */; };
 		A8BE5DE72A38BCD90045DF5C /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8BE5DE62A38BCD90045DF5C /* SearchResult.swift */; };
+		A8F0438A2A3C54AD007F518B /* SearchResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A8F043892A3C54AD007F518B /* SearchResultCell.xib */; };
+		A8F0438C2A3C5BDD007F518B /* SearchResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F0438B2A3C5BDD007F518B /* SearchResultCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 		A8BE5DDE2A38AB740045DF5C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A8BE5DE02A38AB740045DF5C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A8BE5DE62A38BCD90045DF5C /* SearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
+		A8F043892A3C54AD007F518B /* SearchResultCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchResultCell.xib; sourceTree = "<group>"; };
+		A8F0438B2A3C5BDD007F518B /* SearchResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +70,8 @@
 				A8BE5DDD2A38AB740045DF5C /* LaunchScreen.storyboard */,
 				A8BE5DE02A38AB740045DF5C /* Info.plist */,
 				A8BE5DE62A38BCD90045DF5C /* SearchResult.swift */,
+				A8F043892A3C54AD007F518B /* SearchResultCell.xib */,
+				A8F0438B2A3C5BDD007F518B /* SearchResultCell.swift */,
 			);
 			path = StoreSearch;
 			sourceTree = "<group>";
@@ -130,6 +136,7 @@
 			files = (
 				A8BE5DDF2A38AB740045DF5C /* LaunchScreen.storyboard in Resources */,
 				A8BE5DDC2A38AB740045DF5C /* Assets.xcassets in Resources */,
+				A8F0438A2A3C54AD007F518B /* SearchResultCell.xib in Resources */,
 				A8BE5DDA2A38AB720045DF5C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -145,6 +152,7 @@
 				A8BE5DD32A38AB720045DF5C /* AppDelegate.swift in Sources */,
 				A8BE5DE72A38BCD90045DF5C /* SearchResult.swift in Sources */,
 				A8BE5DD52A38AB720045DF5C /* SceneDelegate.swift in Sources */,
+				A8F0438C2A3C5BDD007F518B /* SearchResultCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

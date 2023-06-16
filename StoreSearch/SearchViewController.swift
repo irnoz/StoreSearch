@@ -9,6 +9,12 @@ import UIKit
 
 class SearchViewController: UIViewController {
 
+  struct TableView {
+    struct CellIdentifiers {
+      static let searchResultCell = "SearchResultCell"
+    }
+  }
+
   @IBOutlet weak var searchBar: UISearchBar!
   @IBOutlet weak var tableView: UITableView!
 
@@ -19,6 +25,8 @@ class SearchViewController: UIViewController {
     super.viewDidLoad()
     
     tableView.contentInset = UIEdgeInsets(top: 47, left: 0, bottom: 0, right: 0)
+    let cellNib = UINib(nibName: TableView.CellIdentifiers.searchResultCell, bundle: nil)
+    tableView.register(cellNib, forCellReuseIdentifier: TableView.CellIdentifiers.searchResultCell)
   }
 }
 
@@ -65,23 +73,19 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     _ tableView: UITableView,
     cellForRowAt indexPath: IndexPath
   ) -> UITableViewCell {
-    let cellIdentifier = "SearchResultCell"
+    let cellIdentifier = TableView.CellIdentifiers.searchResultCell
     var cell = tableView.dequeueReusableCell(
-      withIdentifier: cellIdentifier)
-    if cell == nil {
-      cell = UITableViewCell(
-        style: .subtitle,
-        reuseIdentifier: cellIdentifier)
-    }
+      withIdentifier: cellIdentifier,
+      for: indexPath) as! SearchResultCell
     if searchResults.count == 0 {
-      cell!.textLabel!.text = "(Nothing found)"
-      cell!.detailTextLabel!.text = ""
+      cell.nameLabel.text = "(Nothing found)"
+      cell.artistNameLabel.text = ""
     } else {
       let searchResult = searchResults[indexPath.row]
-      cell!.textLabel!.text = searchResult.name
-      cell!.detailTextLabel!.text = searchResult.artistName
+      cell.nameLabel.text = searchResult.name
+      cell.artistNameLabel.text = searchResult.artistName
     }
-    return cell!
+    return cell
   }
 
   func tableView(
