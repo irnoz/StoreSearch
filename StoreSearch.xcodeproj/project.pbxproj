@@ -72,8 +72,8 @@
 				A8BE5DDD2A38AB740045DF5C /* LaunchScreen.storyboard */,
 				A8BE5DE02A38AB740045DF5C /* Info.plist */,
 				A8BE5DE62A38BCD90045DF5C /* SearchResult.swift */,
-				A8F043892A3C54AD007F518B /* SearchResultCell.xib */,
 				A8F0438B2A3C5BDD007F518B /* SearchResultCell.swift */,
+				A8F043892A3C54AD007F518B /* SearchResultCell.xib */,
 				A8F0438D2A3C5E73007F518B /* NothingFoundCell.xib */,
 			);
 			path = StoreSearch;
