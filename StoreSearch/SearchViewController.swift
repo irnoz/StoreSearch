@@ -35,25 +35,56 @@ class SearchViewController: UIViewController {
     cellNib = UINib(nibName: TableView.CellIdentifiers.nothingFoundCell, bundle: nil)
     tableView.register(cellNib, forCellReuseIdentifier: TableView.CellIdentifiers.nothingFoundCell)
   }
+  
+  // MARK: - Helper Methods
+  func iTunesURL(searchText: String) -> URL {
+    // used to encode url string(basically change all unsoported charachters to ones that are supported like ' ' becomes '%20')
+    let encodedText = searchText.addingPercentEncoding(
+      withAllowedCharacters: CharacterSet.urlQueryAllowed)!
+    let urlString = String(
+      format: "https://itunes.apple.com/search?term=%@",
+      encodedText)
+    let url = URL(string: urlString)
+    return url!
+  }
+
+  func performStoreRequest(with url: URL) -> Data? {
+    do {
+      return try Data(contentsOf:url)
+    } catch {
+      print("Download Error: \(error.localizedDescription)")
+      return nil
+    }
+  }
+  
+  func parse(data: Data) -> [SearchResult] {
+    do {
+      let decoder = JSONDecoder()
+      let result = try decoder.decode(
+        ResultArray.self, from: data)
+      return result.results
+    } catch {
+      print("JSON Error: \(error)")
+      return []
+    }
+  }
 }
 
 // MARK: - Search Bar Delegate
 extension SearchViewController: UISearchBarDelegate {
   func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-    searchBar.resignFirstResponder()
-
-    hasSearched = true
-    searchResults = []
-
-    if searchBar.text != "Jb" {
-      for i in 0...2 {
-        let searchResult = SearchResult()
-        searchResult.name = String(format: "Fake Result %d for", i)
-        searchResult.artistName = searchBar.text!
-        searchResults.append(searchResult)
+    if !searchBar.text!.isEmpty {
+      searchBar.resignFirstResponder()
+      hasSearched = true
+      searchResults = []
+      let url = iTunesURL(searchText: searchBar.text!)
+      print("URL: '\(url)'")
+      if let data = performStoreRequest(with: url) {
+        let results = parse(data: data)
+        print("Got results: \(results)")
       }
+      tableView.reloadData()
     }
-    tableView.reloadData()
   }
 
   func position(for bar: UIBarPositioning) -> UIBarPosition {
