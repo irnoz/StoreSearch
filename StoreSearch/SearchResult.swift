@@ -91,3 +91,15 @@ func < (lhs: SearchResult, rhs: SearchResult) -> Bool {
 func > (lhs: SearchResult, rhs: SearchResult) -> Bool {
   return lhs.name.localizedStandardCompare(rhs.name) == .orderedDescending
 }
+// Usage of above functions:
+func usage() {
+//  self.searchResults.sort(by: <)
+//  // or write this
+//  searchResults.sort { $0 < $1 }
+//  // if < is not overloaded than write following
+//  searchResults.sort { $0.name.localizedStandardCompare($1.name) == .orderedAscending }
+//  // or write this
+//  searchResults.sort { result1, result2 in
+//    return result1.name.localizedStandardCompare(result2.name) == .orderedAscending
+//  }
+}
