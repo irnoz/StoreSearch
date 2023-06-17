@@ -100,22 +100,28 @@ extension SearchViewController: UISearchBarDelegate {
       hasSearched = true
       searchResults = []
 
+      let queue = DispatchQueue.global()
       let url = iTunesURL(searchText: searchBar.text!)
-      print("URL: '\(url)'")
-      if let data = performStoreRequest(with: url) {
-        searchResults = parse(data: data)
-        searchResults.sort(by: <)
-//        // or write this
-//        searchResults.sort { $0 < $1 }
-//        // if < is not overloaded than write following
-//        searchResults.sort { $0.name.localizedStandardCompare($1.name) == .orderedAscending }
-//        // or write this
-//        searchResults.sort { result1, result2 in
-//          return result1.name.localizedStandardCompare(result2.name) == .orderedAscending
-//        }
+      
+      queue.async {
+        if let data = self.performStoreRequest(with: url) {
+          self.searchResults = self.parse(data: data)
+          self.searchResults.sort(by: <)
+//          // or write this
+//          searchResults.sort { $0 < $1 }
+//          // if < is not overloaded than write following
+//          searchResults.sort { $0.name.localizedStandardCompare($1.name) == .orderedAscending }
+//          // or write this
+//          searchResults.sort { result1, result2 in
+//            return result1.name.localizedStandardCompare(result2.name) == .orderedAscending
+//          }
+          DispatchQueue.main.async {
+            self.isLoading = false
+            self.tableView.reloadData()
+          }
+          return
+        }
       }
-      isLoading = false
-      tableView.reloadData()
     }
   }
 
@@ -152,8 +158,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
       let spinner = cell.viewWithTag(100) as! UIActivityIndicatorView
       spinner.startAnimating()
       return cell
-    }
-    if searchResults.count == 0 {
+    } else if searchResults.count == 0 {
       return tableView.dequeueReusableCell(
         withIdentifier: TableView.CellIdentifiers.nothingFoundCell,
         for: indexPath)
