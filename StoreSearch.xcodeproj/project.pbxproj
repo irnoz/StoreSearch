@@ -18,6 +18,7 @@
 		A8F0438E2A3C5E73007F518B /* NothingFoundCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A8F0438D2A3C5E73007F518B /* NothingFoundCell.xib */; };
 		A8F043902A3D99F3007F518B /* LoadingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A8F0438F2A3D99F3007F518B /* LoadingCell.xib */; };
 		A8F043922A3E4FC3007F518B /* UIImageView+DownloadImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F043912A3E4FC3007F518B /* UIImageView+DownloadImage.swift */; };
+		A8F043942A40508B007F518B /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F043932A40508B007F518B /* DetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		A8F0438D2A3C5E73007F518B /* NothingFoundCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NothingFoundCell.xib; sourceTree = "<group>"; };
 		A8F0438F2A3D99F3007F518B /* LoadingCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoadingCell.xib; sourceTree = "<group>"; };
 		A8F043912A3E4FC3007F518B /* UIImageView+DownloadImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+DownloadImage.swift"; sourceTree = "<group>"; };
+		A8F043932A40508B007F518B /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +80,7 @@
 				A8F0438D2A3C5E73007F518B /* NothingFoundCell.xib */,
 				A8F0438F2A3D99F3007F518B /* LoadingCell.xib */,
 				A8F043912A3E4FC3007F518B /* UIImageView+DownloadImage.swift */,
+				A8F043932A40508B007F518B /* DetailViewController.swift */,
 			);
 			path = StoreSearch;
 			sourceTree = "<group>";
@@ -161,6 +164,7 @@
 				A8BE5DE72A38BCD90045DF5C /* SearchResult.swift in Sources */,
 				A8BE5DD52A38AB720045DF5C /* SceneDelegate.swift in Sources */,
 				A8F0438C2A3C5BDD007F518B /* SearchResultCell.swift in Sources */,
+				A8F043942A40508B007F518B /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

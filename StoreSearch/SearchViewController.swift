@@ -44,6 +44,13 @@ class SearchViewController: UIViewController {
     tableView.register(cellNib, forCellReuseIdentifier: TableView.CellIdentifiers.loadingCell)
   }
   
+//  // set presentation style via code
+//  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//    if segue.identifier == "ShowDetail" {
+//      segue.destination.modalPresentationStyle = .overFullScreen
+//    }
+//  }
+  
   // MARK: - Helper Methods
   func iTunesURL(searchText: String, category: Int) -> URL {
     let kind: String
@@ -196,6 +203,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     didSelectRowAt indexPath: IndexPath
   ) {
     tableView.deselectRow(at: indexPath, animated: true)
+    performSegue(withIdentifier: "ShowDetail", sender: indexPath)
   }
 
   func tableView(
