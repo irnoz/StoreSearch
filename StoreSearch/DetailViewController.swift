@@ -10,6 +10,7 @@ import UIKit
 class DetailViewController: UIViewController {
 
   var searchResult: SearchResult!
+  var downloadTask: URLSessionDownloadTask?
 
   @IBOutlet weak var popupView: UIView!
   @IBOutlet weak var artworkImageView: UIImageView!
@@ -19,6 +20,7 @@ class DetailViewController: UIViewController {
   @IBOutlet weak var genreLabel: UILabel!
   @IBOutlet weak var priceButton: UIButton!
 
+  // MARK: - Life Cycle
   override func viewDidLoad() {
     super.viewDidLoad()
 
@@ -51,6 +53,11 @@ class DetailViewController: UIViewController {
     priceButton.setTitle(priceText, for: .normal)
   }
 
+  deinit {
+    print("deinit \(self)")
+    downloadTask?.cancel()
+  }
+
   // MARK: - Actions
   @IBAction func close() {
     dismiss(animated: true, completion: nil)
@@ -73,6 +80,11 @@ class DetailViewController: UIViewController {
     }
     kindLabel.text = searchResult.type
     genreLabel.text = searchResult.genre
+    
+    // Get image
+    if let largeURL = URL(string: searchResult.imageLarge) {
+      downloadTask = artworkImageView.loadImage(url: largeURL)
+    }
   }
 }
 
