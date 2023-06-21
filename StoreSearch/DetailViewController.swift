@@ -97,6 +97,12 @@ class DetailViewController: UIViewController {
       downloadTask = artworkImageView.loadImage(url: largeURL)
     }
   }
+  
+  func animationController(
+    forDismissed dismissed: UIViewController
+  ) -> UIViewControllerAnimatedTransitioning? {
+    return SlideOutAnimationController()
+  }
 }
 
 // MARK: - Gesture
