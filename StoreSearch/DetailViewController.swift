@@ -51,6 +51,12 @@ class DetailViewController: UIViewController {
       priceText = ""
     }
     priceButton.setTitle(priceText, for: .normal)
+    
+    // Gradient view
+    view.backgroundColor = UIColor.clear
+    let dimmingView = GradientView(frame: CGRect.zero)
+    dimmingView.frame = view.bounds
+    view.insertSubview(dimmingView, at: 0)
   }
 
   deinit {
