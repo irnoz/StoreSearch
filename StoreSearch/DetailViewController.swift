@@ -21,6 +21,11 @@ class DetailViewController: UIViewController {
   @IBOutlet weak var priceButton: UIButton!
 
   // MARK: - Life Cycle
+  required init?(coder aDecoder: NSCoder) {
+    super.init(coder: aDecoder)
+    transitioningDelegate = self
+  }
+
   override func viewDidLoad() {
     super.viewDidLoad()
 
@@ -102,5 +107,16 @@ extension DetailViewController: UIGestureRecognizerDelegate {
     shouldReceive touch: UITouch
   ) -> Bool {
     return (touch.view === self.view)
+  }
+}
+
+extension DetailViewController:
+  UIViewControllerTransitioningDelegate {
+  func animationController(
+    forPresented presented: UIViewController,
+    presenting: UIViewController,
+    source: UIViewController
+  ) -> UIViewControllerAnimatedTransitioning? {
+    return BounceAnimationController()
   }
 }
