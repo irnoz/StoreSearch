@@ -9,8 +9,10 @@ import UIKit
 
 class DetailViewController: UIViewController {
 
-  var searchResult: SearchResult!
-  var downloadTask: URLSessionDownloadTask?
+  enum AnimationStyle {
+    case slide
+    case fade
+  }
 
   @IBOutlet weak var popupView: UIView!
   @IBOutlet weak var artworkImageView: UIImageView!
@@ -19,6 +21,10 @@ class DetailViewController: UIViewController {
   @IBOutlet weak var kindLabel: UILabel!
   @IBOutlet weak var genreLabel: UILabel!
   @IBOutlet weak var priceButton: UIButton!
+
+  var searchResult: SearchResult!
+  var downloadTask: URLSessionDownloadTask?
+  var dismissStyle = AnimationStyle.fade
 
   // MARK: - Life Cycle
   required init?(coder aDecoder: NSCoder) {
@@ -71,6 +77,7 @@ class DetailViewController: UIViewController {
 
   // MARK: - Actions
   @IBAction func close() {
+    dismissStyle = .slide
     dismiss(animated: true, completion: nil)
   }
 
@@ -97,12 +104,6 @@ class DetailViewController: UIViewController {
       downloadTask = artworkImageView.loadImage(url: largeURL)
     }
   }
-  
-  func animationController(
-    forDismissed dismissed: UIViewController
-  ) -> UIViewControllerAnimatedTransitioning? {
-    return SlideOutAnimationController()
-  }
 }
 
 // MARK: - Gesture
@@ -116,13 +117,24 @@ extension DetailViewController: UIGestureRecognizerDelegate {
   }
 }
 
-extension DetailViewController:
-  UIViewControllerTransitioningDelegate {
+// MARK: - Transition Delegate
+extension DetailViewController: UIViewControllerTransitioningDelegate {
   func animationController(
     forPresented presented: UIViewController,
     presenting: UIViewController,
     source: UIViewController
   ) -> UIViewControllerAnimatedTransitioning? {
     return BounceAnimationController()
+  }
+  
+  func animationController(
+    forDismissed dismissed: UIViewController
+  ) -> UIViewControllerAnimatedTransitioning? {
+    switch dismissStyle {
+    case .slide:
+      return SlideOutAnimationController()
+    case .fade:
+      return FadeOutAnimationController()
+    }
   }
 }
