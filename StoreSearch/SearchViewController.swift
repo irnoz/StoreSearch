@@ -24,6 +24,7 @@ class SearchViewController: UIViewController {
   var searchResults = [SearchResult]()
   var hasSearched = false
   var isLoading = false
+  var landscapeVC: LandscapeViewController?
 
   var dataTask: URLSessionDataTask?
 
@@ -50,6 +51,19 @@ class SearchViewController: UIViewController {
 //      segue.destination.modalPresentationStyle = .overFullScreen
 //    }
 //  }
+  override func willTransition(
+    to newCollection: UITraitCollection,
+    with coordinator: UIViewControllerTransitionCoordinator
+  ){
+    super.willTransition(to: newCollection, with: coordinator)
+    switch newCollection.verticalSizeClass {
+    case .compact:
+      showLandscape(with: coordinator)
+    case .regular, .unspecified:
+      hideLandscape(with: coordinator)
+    @unknown default:
+      break
+    } }
   
   // MARK: - Helper Methods
   func iTunesURL(searchText: String, category: Int) -> URL {
@@ -92,7 +106,22 @@ class SearchViewController: UIViewController {
     alert.addAction(action)
     present(alert, animated: true, completion: nil)
   }
+
+  func showLandscape(with coordinator: UIViewControllerTransitionCoordinator) {
+    guard landscapeVC == nil else { return }
+    landscapeVC = storyboard!.instantiateViewController(
+      withIdentifier: "LandscapeViewController") as? LandscapeViewController
+    if let controller = landscapeVC {
+      controller.view.frame = view.bounds
+      view.addSubview(controller.view)
+      addChild(controller)
+      controller.didMove(toParent: self)
+    }
+  }
   
+  func hideLandscape(with coordinator: UIViewControllerTransitionCoordinator) {
+  }
+
   // MARK: - Actions
   @IBAction func segmentChanged(_ sender: UISegmentedControl) {
     performSearch()

@@ -22,6 +22,7 @@
 		A8F043962A436729007F518B /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F043952A436728007F518B /* GradientView.swift */; };
 		A8F043982A436A0F007F518B /* BounceAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F043972A436A0F007F518B /* BounceAnimationController.swift */; };
 		A8F0439A2A436C31007F518B /* SlideOutAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F043992A436C31007F518B /* SlideOutAnimationController.swift */; };
+		A8F0439C2A437516007F518B /* LandscapeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8F0439B2A437516007F518B /* LandscapeViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		A8F043952A436728007F518B /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		A8F043972A436A0F007F518B /* BounceAnimationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BounceAnimationController.swift; sourceTree = "<group>"; };
 		A8F043992A436C31007F518B /* SlideOutAnimationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideOutAnimationController.swift; sourceTree = "<group>"; };
+		A8F0439B2A437516007F518B /* LandscapeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandscapeViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +92,7 @@
 				A8F043952A436728007F518B /* GradientView.swift */,
 				A8F043972A436A0F007F518B /* BounceAnimationController.swift */,
 				A8F043992A436C31007F518B /* SlideOutAnimationController.swift */,
+				A8F0439B2A437516007F518B /* LandscapeViewController.swift */,
 			);
 			path = StoreSearch;
 			sourceTree = "<group>";
@@ -172,6 +175,7 @@
 				A8F043922A3E4FC3007F518B /* UIImageView+DownloadImage.swift in Sources */,
 				A8BE5DE72A38BCD90045DF5C /* SearchResult.swift in Sources */,
 				A8F043982A436A0F007F518B /* BounceAnimationController.swift in Sources */,
+				A8F0439C2A437516007F518B /* LandscapeViewController.swift in Sources */,
 				A8BE5DD52A38AB720045DF5C /* SceneDelegate.swift in Sources */,
 				A8F0438C2A3C5BDD007F518B /* SearchResultCell.swift in Sources */,
 				A8F043962A436729007F518B /* GradientView.swift in Sources */,
