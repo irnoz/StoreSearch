@@ -140,54 +140,15 @@ extension SearchViewController: UISearchBarDelegate {
   func performSearch() {
     search.performSearch(
       for: searchBar.text!,
-      category: segmentedControl.selectedSegmentIndex)
+      category: segmentedControl.selectedSegmentIndex) { success in
+        if !success {
+          self.showNetworkError()
+        }
+        self.tableView.reloadData()
+      }
     tableView.reloadData()
     searchBar.resignFirstResponder()
   }
-//  func performSearch() {
-//    if !searchBar.text!.isEmpty {
-//      searchBar.resignFirstResponder()
-//      dataTask?.cancel()
-//
-//      isLoading = true
-//      tableView.reloadData()
-//
-//      hasSearched = true
-//      searchResults = []
-//
-//      let url = iTunesURL(
-//        searchText: searchBar.text!,
-//        category: segmentedControl.selectedSegmentIndex)
-//      let session = URLSession.shared
-//      dataTask = session.dataTask(with: url) { data, response, error in
-//        if let error = error as NSError?, error.code == -999 {
-//          return  // Search was cancelled (code -999)
-//        } else if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 {
-//          if let data = data {
-//            self.searchResults = self.parse(data: data)
-//            self.searchResults.sort(by: <)
-////            // check if current thread is main
-////            print("On main thread? " + (Thread.current.isMainThread ?
-////                                        "Yes" : "No"))
-//            DispatchQueue.main.async {
-//              self.isLoading = false
-//              self.tableView.reloadData()
-//            }
-//            return
-//          }
-//        } else {
-//          print("Failure! \(response!)")
-//        }
-//        DispatchQueue.main.async {
-//          self.hasSearched = false
-//          self.isLoading = false
-//          self.tableView.reloadData()
-//          self.showNetworkError()
-//        }
-//      }
-//      dataTask?.resume()
-//    }
-//  }
 
   func position(for bar: UIBarPositioning) -> UIBarPosition {
     return .topAttached
