@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A8A3E67A2A4C120600318513 /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8A3E6792A4C120600318513 /* Search.swift */; };
 		A8BE5DD32A38AB720045DF5C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8BE5DD22A38AB720045DF5C /* AppDelegate.swift */; };
 		A8BE5DD52A38AB720045DF5C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8BE5DD42A38AB720045DF5C /* SceneDelegate.swift */; };
 		A8BE5DD72A38AB720045DF5C /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8BE5DD62A38AB720045DF5C /* SearchViewController.swift */; };
@@ -27,6 +28,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A8A3E6792A4C120600318513 /* Search.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Search.swift; sourceTree = "<group>"; };
 		A8BE5DCF2A38AB720045DF5C /* StoreSearch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StoreSearch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8BE5DD22A38AB720045DF5C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A8BE5DD42A38AB720045DF5C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -96,6 +98,7 @@
 				A8F043992A436C31007F518B /* SlideOutAnimationController.swift */,
 				A8F0439B2A437516007F518B /* LandscapeViewController.swift */,
 				A8F0439D2A437E18007F518B /* FadeOutAnimationController.swift */,
+				A8A3E6792A4C120600318513 /* Search.swift */,
 			);
 			path = StoreSearch;
 			sourceTree = "<group>";
@@ -173,6 +176,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A8A3E67A2A4C120600318513 /* Search.swift in Sources */,
 				A8BE5DD72A38AB720045DF5C /* SearchViewController.swift in Sources */,
 				A8BE5DD32A38AB720045DF5C /* AppDelegate.swift in Sources */,
 				A8F0439E2A437E18007F518B /* FadeOutAnimationController.swift in Sources */,
