@@ -50,12 +50,17 @@ class LandscapeViewController: UIViewController {
     if firstTime {
       firstTime = false
       switch search.state {
-      case .notSearchedYet, .loading, .noResults:
+      case .notSearchedYet:
         break
+      case .loading:
+        showSpinner()
+      case .noResults:
+        showNothingFoundLabel()
       case .results(let list):
         tileButtons(list)
       }
     }
+    
   }
   
   deinit {
@@ -65,10 +70,19 @@ class LandscapeViewController: UIViewController {
     }
   }
 
-  // MARK: - Navigation
-//  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//   
-//   }
+  // MARK: - Actions
+  @IBAction func pageChanged(_ sender: UIPageControl) {
+    UIView.animate(
+      withDuration: 0.3,
+      delay: 0,
+      options: [.curveEaseInOut],
+      animations: {
+        self.scrollView.contentOffset = CGPoint(
+          x: self.scrollView.bounds.size.width * CGFloat(sender.currentPage),
+          y: 0)
+      },
+      completion: nil)
+  }
 
   // MARK: - Private Methods
   private func tileButtons(_ searchResults: [SearchResult]) {
@@ -128,6 +142,22 @@ class LandscapeViewController: UIViewController {
     pageControl.currentPage = 0
   }
   
+  private func showNothingFoundLabel() {
+    let label = UILabel(frame: CGRect.zero)
+    label.text = "Nothing Found"
+    label.textColor = UIColor.label
+    label.backgroundColor = UIColor.clear
+    label.sizeToFit()
+    var rect = label.frame
+    rect.size.width = ceil(rect.size.width / 2) * 2
+    rect.size.height = ceil(rect.size.height / 2) * 2
+    label.frame = rect
+    label.center = CGPoint(
+      x: scrollView.bounds.midX,
+      y: scrollView.bounds.midY)
+    view.addSubview(label)
+  }
+  
   // FIXME: - image resizing required
   private func downloadImage(
     for searchResult: SearchResult,
@@ -150,18 +180,31 @@ class LandscapeViewController: UIViewController {
     }
   }
   
-  // MARK: - Actions
-  @IBAction func pageChanged(_ sender: UIPageControl) {
-    UIView.animate(
-      withDuration: 0.3,
-      delay: 0,
-      options: [.curveEaseInOut],
-      animations: {
-        self.scrollView.contentOffset = CGPoint(
-          x: self.scrollView.bounds.size.width * CGFloat(sender.currentPage),
-          y: 0)
-      },
-      completion: nil)
+  private func showSpinner() {
+    let spinner = UIActivityIndicatorView(style: .large)
+    spinner.center = CGPoint(
+      x: scrollView.bounds.midX + 0.5,
+      y: scrollView.bounds.midY + 0.5)
+    spinner.tag = 1000
+    view.addSubview(spinner)
+    spinner.startAnimating()
+  }
+
+  private func hideSpinner() {
+    view.viewWithTag(1000)?.removeFromSuperview()
+  }
+
+  // MARK: - Helper Methods
+  func searchResultsReceived() {
+    hideSpinner()
+    switch search.state {
+    case .notSearchedYet, .loading:
+      break
+    case .noResults:
+      showNothingFoundLabel()
+    case .results(let list):
+      tileButtons(list)
+    }
   }
 }
 
