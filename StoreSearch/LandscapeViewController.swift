@@ -70,6 +70,17 @@ class LandscapeViewController: UIViewController {
     }
   }
 
+  // MARK: - Navigation
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    if segue.identifier == "ShowDetail" {
+      if case .results(let list) = search.state {
+        let detailViewController = segue.destination as! DetailViewController
+        let searchResult = list[(sender as! UIButton).tag - 2000]
+        detailViewController.searchResult = searchResult
+      }
+    }
+  }
+
   // MARK: - Actions
   @IBAction func pageChanged(_ sender: UIPageControl) {
     UIView.animate(
@@ -113,8 +124,11 @@ class LandscapeViewController: UIViewController {
       let button = UIButton(type: .custom)
       button.setBackgroundImage(UIImage(named: "LandscapeButton"), for: .normal)
       downloadImage(for: result, andPlaceOn: button)
-//      button.backgroundColor = UIColor.white
-//      button.setTitle("\(index)", for: .normal)
+      button.tag = 2000 + index
+      button.addTarget(
+        self,
+        action: #selector(buttonPressed),
+        for: .touchUpInside)
       button.frame = CGRect(
         x: x + paddingHorz,
         y: marginY + CGFloat(row) * itemHeight + paddingVert,
@@ -205,6 +219,10 @@ class LandscapeViewController: UIViewController {
     case .results(let list):
       tileButtons(list)
     }
+  }
+
+  @objc private func buttonPressed(_ sender: UIButton) {
+    performSegue(withIdentifier: "ShowDetail", sender: sender)
   }
 }
 
