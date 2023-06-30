@@ -79,7 +79,7 @@ class Search {
     let kind = category.type
     let locale = Locale.autoupdatingCurrent
     let language = locale.identifier
-    let countryCode = locale.regionCode ?? "en_US"
+    let countryCode = locale.language.region?.identifier ?? "en_US"
 
     // used to encode url string(basically change all unsoported charachters to ones that are supported like ' ' becomes '%20')
     let encodedText = searchText.addingPercentEncoding(
@@ -88,7 +88,7 @@ class Search {
       "term=\(encodedText)&limit=200&entity=\(kind)" +
       "&lang=\(language)&country=\(countryCode)"
     let url = URL(string: urlString)
-    print("URL: \(url!)") 
+    print("URL: \(url!)")
     return url!
   }
   
